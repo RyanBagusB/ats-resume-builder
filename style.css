@@ -1,0 +1,73 @@
+:root {
+  --white-color: #fff;
+  --light-green: #13ab67;
+  --dark-color: #3f3f42;
+  --gray-color: #eee;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header, main, footer {
+  padding: 1rem 5%;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--white-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 1.3rem;
+  color: var(--light-green);
+  display: flex;
+  align-items: center;
+}
+
+main {
+  padding-top: 5.5rem;
+  color: var(--dark-color);
+  min-height: calc(100vh - 52px);
+  background-color: var(--gray-color);
+}
+
+main div {
+  background-color: var(--white-color);
+  padding: 1rem;
+  border-radius: .8rem;
+}
+
+footer {
+  background-color: var(--light-green);
+  color: var(--white-color);
+  text-align: center;
+  padding: 1rem;
+}
+
+@media screen and (min-width: 481px) {
+  header, main, footer {
+    padding: 1rem 6%;
+  }
+
+  main {
+    padding-top: 5.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .title {
+    font-size: 1.8rem;
+  }
+}
