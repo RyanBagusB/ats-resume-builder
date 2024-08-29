@@ -1,4 +1,4 @@
-# CV PDF Generator
+# Ats Resume Builder
 
 This project is a simple CV PDF generator built using JavaScript and the jsPDF library. It takes user data and converts it into a well-structured PDF document. The generated PDF includes sections like work experiences, descriptions with bullet points, and handles text wrapping and pagination.
 
