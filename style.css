@@ -136,6 +136,7 @@ main {
   gap: .8rem;
   padding: .5rem;
   border-radius: .6rem 0 0 .6rem;
+  border: 1px solid var(--dark-gray);
 }
 
 .tab-contents__header .section-navigation__stepper-container {
@@ -171,9 +172,82 @@ main {
 }
 
 .section-content {
-  background-color: var(--gray-color);
+  border: 1px solid var(--dark-gray);
   padding: .5rem;
   border-radius: .6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.section-content__body,
+.section-content__body__input-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section-content__body__input {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.section-content__body__input label {
+  font-weight: 600;
+  color: var(--dark-color);
+}
+
+.section-content__body__input input,
+.section-content__body__input textarea {
+  padding: 0.75rem;
+  border: 1px solid var(--dark-gray);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.section-content__body__input input:focus,
+.section-content__body__input textarea:focus {
+  outline: none;
+  border-color: var(--light-green);
+  box-shadow: 0 0 5px rgba(19, 171, 103, 0.5);
+}
+
+.section-content__body__input input[type="file"] {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.section-content__body > .section-content__body__input:last-child::after {
+  content: "Drop your photo here or click to upload";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  border: 2px dashed var(--light-green);
+  border-radius: 0.5rem;
+  color: var(--light-green);
+  font-size: 1rem;
+  text-align: center;
+  transition: border-color 0.5s ease;
+}
+
+.section-content__body__input img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  display: none;
+}
+
+.section-content__body__input input[type="file"]:valid + img {
+  display: block;
 }
 
 @keyframes fade-in {
