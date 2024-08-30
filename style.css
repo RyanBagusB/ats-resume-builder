@@ -199,6 +199,10 @@ main {
   color: var(--dark-color);
 }
 
+.section-content__body__input p {
+  font-size: .8rem;
+}
+
 .section-content__body__input input,
 .section-content__body__input textarea {
   padding: 0.75rem;
@@ -224,30 +228,39 @@ main {
   cursor: pointer;
 }
 
+.section-content__body > .section-content__body__input:last-child::before {
+  position: absolute;
+  top: var(--photo-top);
+  left: 50%;
+  transform: translateX(-50%);
+  content: "";
+  background-image: var(--photo-url);
+  height: var(--photo-size);
+  width: var(--photo-size);
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .section-content__body > .section-content__body__input:last-child::after {
-  content: "Drop your photo here or click to upload";
+  content: var(--content-text, "Drop your photo here or click to upload");
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
   border: 2px dashed var(--light-green);
   border-radius: 0.5rem;
   color: var(--light-green);
   font-size: 1rem;
   text-align: center;
-  transition: border-color 0.5s ease;
+  transition: border-color 0.5s ease, height 0.5s ease;
+  height: var(--input-height, 8rem);
 }
 
-.section-content__body__input img {
-  width: 100%;
-  height: auto;
-  border-radius: 0.5rem;
-  margin-top: 1rem;
-  display: none;
-}
-
-.section-content__body__input input[type="file"]:valid + img {
-  display: block;
+footer {
+  background-color: var(--light-green);
+  color: var(--white-color);
+  text-align: center;
+  padding: 1rem;
 }
 
 @keyframes fade-in {
@@ -257,13 +270,6 @@ main {
   100% {
     opacity: 1;
   }
-}
-
-footer {
-  background-color: var(--light-green);
-  color: var(--white-color);
-  text-align: center;
-  padding: 1rem;
 }
 
 @media screen and (min-width: 481px) {
