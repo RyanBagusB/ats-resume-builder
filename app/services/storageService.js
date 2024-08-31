@@ -4,13 +4,13 @@ resume.body = '';
 resume.footer = '';
 
 export const storageService = {
-    save(key, value) {
-      localStorage.setItem(key, JSON.stringify(value));
-    },
+  save(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+  },
   
-    load(key) {
-      const data = localStorage.getItem(key);
-      return data ? JSON.parse(data) : resume;
-    },
-  };
+  load(key) {
+    const data = localStorage.getItem(key);
+    return data ? JSON.parse(data) : resume;
+  },
+};
   
