@@ -275,6 +275,14 @@ main {
   font-weight: 600;
 }
 
+.tab-contents__body .section-content__form {
+  display: none;
+}
+
+.tab-contents__body .section-content__form.active {
+  display: block;
+}
+
 footer {
   background-color: var(--light-green);
   color: var(--white-color);
