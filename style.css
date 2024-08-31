@@ -256,6 +256,25 @@ main {
   height: var(--input-height, 8rem);
 }
 
+.section-content__body__input #remove-photo {
+  position: absolute;
+  top: 22px;
+  display: none;
+  right: -5px;
+  padding: 1rem;
+  color: rgb(227, 84, 84);
+  cursor: pointer;
+}
+
+.section-content__footer__next {
+  background: var(--green-gradient);
+  border: none;
+  color: var(--white-color);
+  padding: 1rem;
+  border-radius: .5rem;
+  font-weight: 600;
+}
+
 footer {
   background-color: var(--light-green);
   color: var(--white-color);
