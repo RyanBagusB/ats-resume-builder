@@ -151,6 +151,7 @@ main {
   border: none;
   line-height: 9px;
   cursor: pointer;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .section-navigation__stepper-container__stepper:hover,
@@ -277,6 +278,7 @@ main {
 
 .tab-contents__body .section-content__form {
   display: none;
+  animation: fade-in .6s ease-in-out forwards;
 }
 
 .tab-contents__body .section-content__form.active {
