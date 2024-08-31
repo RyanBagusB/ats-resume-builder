@@ -15,11 +15,19 @@ class ResumeController {
     this.initStepperButtonListener();
     const headerNextButton = document.querySelector('.tab-contents__header .section-content__footer__next');
     const bodySaveButton = document.querySelector('.tab-contents__body .section-content__footer__next');
-    const bodyBackButton = document.querySelector('.tab-contents__body .section-content__footer__next');
+    const bodyBackButton = document.querySelector('.tab-contents__body .section-content__footer__back');
 
     headerNextButton.addEventListener('click', navigationService.headerNextButtonListener);
+
     bodySaveButton.addEventListener('click', () => {
       const { activeStepper, activeBody } = navigationService.bodyNextButtonListener(this.activeStepperSection, this.activeBodySection);
+
+      this.activeStepperSection = activeStepper;
+      this.activeBodySection = activeBody;
+    });
+
+    bodyBackButton.addEventListener('click', () => {
+      const { activeStepper, activeBody } = navigationService.bodyBackButtonListener(this.activeStepperSection, this.activeBodySection);
 
       this.activeStepperSection = activeStepper;
       this.activeBodySection = activeBody;

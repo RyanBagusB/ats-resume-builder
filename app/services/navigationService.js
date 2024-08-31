@@ -30,6 +30,27 @@ class navigationService {
 
     return { activeStepper: nextStepper, activeBody: nextBody };
   }
+
+  bodyBackButtonListener(activeStepper, activeBody) {
+    const currentTab = document.querySelector('#body');
+    const previousTab = currentTab.previousElementSibling.previousElementSibling;
+    const previousStepper = activeStepper.previousElementSibling;
+    const previousBody = activeBody.previousElementSibling;
+    
+    if (!previousBody) {
+      currentTab.checked = false;
+      previousTab.checked = true;
+      return { activeStepper, activeBody };
+    }
+
+    activeStepper.classList.remove('active');
+    previousStepper.classList.add('active');
+    
+    activeBody.classList.remove('active');
+    previousBody.classList.add('active');
+
+    return { activeStepper: previousStepper, activeBody: previousBody };
+  }
 }
 
 export default new navigationService();
