@@ -1,6 +1,6 @@
 import bodyService from "../services/BodyService";
 import headerService from "../services/HeaderService";
-import saveService from "../services/SaveService";
+import navigationService from "../services/navigationService";
 
 class ResumeController {
   constructor() {
@@ -13,12 +13,13 @@ class ResumeController {
 
   main() {
     this.initStepperButtonListener();
-    const headerSaveButton = document.querySelector('.tab-contents__header .section-content__footer__next');
+    const headerNextButton = document.querySelector('.tab-contents__header .section-content__footer__next');
     const bodySaveButton = document.querySelector('.tab-contents__body .section-content__footer__next');
+    const bodyBackButton = document.querySelector('.tab-contents__body .section-content__footer__next');
 
-    headerSaveButton.addEventListener('click', saveService.headerSaveButtonListener);
+    headerNextButton.addEventListener('click', navigationService.headerNextButtonListener);
     bodySaveButton.addEventListener('click', () => {
-      const { activeStepper, activeBody } = saveService.bodySaveButtonListener(this.activeStepperSection, this.activeBodySection);
+      const { activeStepper, activeBody } = navigationService.bodyNextButtonListener(this.activeStepperSection, this.activeBodySection);
 
       this.activeStepperSection = activeStepper;
       this.activeBodySection = activeBody;

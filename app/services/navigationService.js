@@ -1,7 +1,7 @@
-import headerService from "../services/HeaderService";
+import headerService from "./HeaderService";
 
-class SaveService {
-  headerSaveButtonListener() {
+class navigationService {
+  headerNextButtonListener() {
     const currentTab = document.querySelector('#header');
     const nextTab = currentTab.nextElementSibling.nextElementSibling;
     
@@ -10,7 +10,7 @@ class SaveService {
     headerService.saveHeader();
   }
   
-  bodySaveButtonListener(activeStepper, activeBody) {
+  bodyNextButtonListener(activeStepper, activeBody) {
     const currentTab = document.querySelector('#body');
     const nextTab = currentTab.nextElementSibling.nextElementSibling;
     const nextStepper = activeStepper.nextElementSibling;
@@ -32,4 +32,4 @@ class SaveService {
   }
 }
 
-export default new SaveService();
+export default new navigationService();
