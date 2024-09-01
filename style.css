@@ -289,6 +289,43 @@ main {
   width: 130px;
 }
 
+.section-content__header {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: auto 1fr;
+}
+
+.section-content__header-title {
+  grid-column: 1 / 2;
+  align-self: center;
+  padding-right: .4rem;
+}
+
+.section-content__header-title[contenteditable="true"] {
+  outline: none;
+  border-bottom: 1px solid var(--dark-color);
+  padding: .3rem 1rem .3rem .6rem;
+  font-weight: normal;
+  font-size: 1.1rem;
+}
+
+.section-content__header__edit-title-button {
+  background-color: transparent;
+  padding: .5rem;
+  border: none;
+  cursor: pointer;
+  color: var(--dark-color);
+  grid-column: 2 / 3;
+  justify-self: start;
+  font-size: 1.3rem;
+}
+
+.section-content__header p {
+  grid-column: 1 / -1;
+  font-size: .9rem;
+  margin: 0;
+}
+
 .tab-contents__body .section-content__form {
   display: none;
   animation: fade-in .6s ease-in-out forwards;
