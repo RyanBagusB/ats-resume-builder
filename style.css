@@ -271,20 +271,22 @@ main {
   background: var(--green-gradient);
   border: none;
   color: var(--white-color);
-  padding: 1rem;
+  padding: .7rem;
   border-radius: .5rem;
   font-weight: 600;
   cursor: pointer;
+  width: 130px;
 }
 
 .section-content__footer__back {
   background-color: var(--white-color);
   border: 1px solid var(--light-green);
   color: var(--light-green);
-  padding: 1rem;
+  padding: .7rem;
   border-radius: .5rem;
   font-weight: 600;
   cursor: pointer;
+  width: 130px;
 }
 
 .tab-contents__body .section-content__form {
@@ -295,6 +297,35 @@ main {
 .tab-contents__body .section-content__form.active {
   display: block;
 }
+
+.section-content__footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.section-content__footer__back {
+  order: 1;
+  justify-content: flex-start;
+}
+
+.section-content__footer__next {
+  order: 2;
+  justify-content: flex-end;
+}
+
+.section-content__footer button:only-child {
+  justify-content: center;
+}
+
+.section-content__footer button.section-content__footer__back:only-child {
+  order: 1;
+}
+
+.section-content__footer button.section-content__footer__next:only-child {
+  order: 2;
+  margin-left: auto;
+}
+
 
 footer {
   background-color: var(--light-green);
