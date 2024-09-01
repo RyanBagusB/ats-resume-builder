@@ -53,7 +53,7 @@ class ResumeController {
 
     const stepperLength = stepperContainer.children.length + 1;
     const stepper = bodyService.createStepperElement(stepperLength);
-    const bodySection = bodyService.createBodyElement();
+    const bodySection = bodyService.createBodySection();
 
     stepper.addEventListener('click', () => {
       this.stepperListener(stepper, bodySection);
