@@ -40,6 +40,8 @@ class HeaderController {
     if (file) {
       reader.readAsDataURL(file);
     }
+    
+    headerService.save();
   }
 
   removePhotoListener() {
@@ -55,6 +57,7 @@ class HeaderController {
 
     const fileInput = parentPhoto.querySelector('input[type="file"]');
     fileInput.value = '';
+    headerService.save();
   }
 
   nextButtonListener() {
