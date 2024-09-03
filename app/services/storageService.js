@@ -1,5 +1,5 @@
 const resume = {};
-resume.header = [];
+resume.header = {};
 resume.body = [];
 resume.footer = [];
 
