@@ -33,17 +33,11 @@ class HeaderService {
   }
 
   save() {
-    const { name, phoneNumber, email, linkedin, portofolio, address, description, photo } = this.headerElements;
+    const { photo, ...other } = this.headerElements;
 
-    this.resume.header = {
-      name: name.value,
-      phoneNumber: phoneNumber.value,
-      email: email.value,
-      linkedin: linkedin.value,
-      portofolio: portofolio.value,
-      address: address.value,
-      description: description.value,
-    };
+    Object.entries(other).forEach(([key, header]) => {
+      this.resume.header[key] = header.value;
+    });
 
     if (photo.files.length > 0) {
       this.savePhoto(photo);
