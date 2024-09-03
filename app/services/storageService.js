@@ -1,7 +1,7 @@
 const resume = {};
-resume.header = '';
-resume.body = '';
-resume.footer = '';
+resume.header = [];
+resume.body = [];
+resume.footer = [];
 
 export const storageService = {
   save(key, value) {

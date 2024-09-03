@@ -1,5 +1,5 @@
 import bodyService from "../services/BodyService";
-import headerService from "../services/HeaderService";
+// import headerService from "../services/HeaderService";
 import navigationService from "../services/navigationService";
 
 class ResumeController {
@@ -8,16 +8,16 @@ class ResumeController {
     this.activeBodySection = document.querySelector('.tab-contents__body .section-content__form.active');
     this.activeStepperSection = document.querySelector('.tab-contents__body .section-navigation__stepper-container__stepper.active');
 
-    headerService.loadHeader();
+    // headerService.loadHeader();
   }
 
   main() {
     this.initStepperButtonListener();
-    const headerNextButton = document.querySelector('.tab-contents__header .section-content__footer__next');
+    // const headerNextButton = document.querySelector('.tab-contents__header .section-content__footer__next');
     const bodySaveButton = document.querySelector('.tab-contents__body .section-content__footer__next');
     const bodyBackButton = document.querySelector('.tab-contents__body .section-content__footer__back');
 
-    headerNextButton.addEventListener('click', navigationService.headerNextButtonListener);
+    // headerNextButton.addEventListener('click', navigationService.headerNextButtonListener);
 
     bodySaveButton.addEventListener('click', () => {
       const { activeStepper, activeBody } = navigationService.bodyNextButtonListener(this.activeStepperSection, this.activeBodySection);
