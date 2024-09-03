@@ -236,11 +236,12 @@ main {
   transform: translateX(-50%);
   content: "";
   background-image: var(--photo-url);
-  height: var(--photo-size);
+  height: var(--photo-size, 0);
   width: var(--photo-size);
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
+  transition: .5s ease;
 }
 
 .section-content__body > .section-content__body__input:last-child::after {
@@ -259,12 +260,21 @@ main {
 
 .section-content__body__input #remove-photo {
   position: absolute;
-  top: 22px;
+  top: 4px;
   display: none;
-  right: -5px;
-  padding: 1rem;
+  right: -24px;
+  padding: .7rem 1rem;
   color: rgb(227, 84, 84);
   cursor: pointer;
+  background-color: transparent;
+  border: none;
+  font-size: 1.4rem;
+  transition: background-color .5s;
+  border-radius: 50%;
+}
+
+.section-content__body__input #remove-photo:hover {
+  background-color: var(--dark-gray);
 }
 
 .section-content__footer__next {
