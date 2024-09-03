@@ -17,7 +17,7 @@ class BodyService {
     return stepper;
   }
 
-  createSectionElement() {
+  createSectionElement(titleText) {
     const header = document.createElement('div');
     const title = document.createElement('h2');
     const editTitleButton = document.createElement('button');
@@ -27,7 +27,7 @@ class BodyService {
     title.classList.add('section-content__header-title');
     editTitleButton.classList.add('section-content__header__edit-title-button');
 
-    title.innerText = 'Untitled';
+    title.innerText = titleText;
     editTitleButton.innerHTML = '<i class="fa fa-pencil"></i>';
     description.innerText = 'Share details to showcase your qualifications';
 
@@ -36,10 +36,10 @@ class BodyService {
     return header;
   }
 
-  createSectionForm() {
+  createSectionForm(title = 'Untitled') {
     const form = document.createElement('div');
     const stepperElement = this.createStepperElement();
-    const sectionElement = this.createSectionElement();
+    const sectionElement = this.createSectionElement(title);
     
     form.classList.add('section-content__form');
     form.appendChild(sectionElement);
@@ -54,16 +54,24 @@ class BodyService {
   }
 
   save() {
-    console.log(this.bodyElements)
+    this.resume.body = [];
+    this.bodyElements.forEach((element) => {
+      const form = element.form;
+      const title = form.querySelector('h2').textContent;
+
+      this.resume.body.push({ title });
+    });
+    
+    resumeService.saveCV(this.resume);
   }
 
   load() {
     const { body } = this.resume;
 
 
-    if (body) {
+    if (body.length) {
       body.forEach((value) => {
-        console.log(value.title);
+        this.createSectionForm(value.title);
       });
     } else {
       this.createSectionForm();
