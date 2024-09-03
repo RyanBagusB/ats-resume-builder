@@ -22,8 +22,8 @@
           <input type="radio" id="footer" name="tabs">
           <label for="footer">Footer</label>
           
-          <input type="radio" id="preview" name="tabs">
-          <label for="preview">Preview</label>
+          <input type="radio" id="result" name="tabs">
+          <label for="result">Result</label>
         </nav>
 
         <div class="tab-contents">
@@ -44,7 +44,7 @@
                 <div class="section-content__body__input-row">
                   <div class="section-content__body__input">
                     <label for="name">Name</label>
-                    <input type="text" id="name" placeholder="Enter your name">
+                    <input type="text" id="name" placeholder="Enter your name" autocomplete="additional-name">
                   </div>
 
                   <div class="section-content__body__input">
@@ -55,7 +55,7 @@
 
                 <div class="section-content__body__input">
                   <label for="email">Email</label>
-                  <input type="email" id="email" placeholder="Enter your email">
+                  <input type="email" id="email" placeholder="Enter your email" autocomplete="email">
                 </div>
 
                 <div class="section-content__body__input">
@@ -70,7 +70,7 @@
 
                 <div class="section-content__body__input">
                   <label for="address">Address</label>
-                  <input type="text" id="address" placeholder="Enter your address">
+                  <input type="text" id="address" placeholder="Enter your address" autocomplete="address-level1">
                 </div>
 
                 <div class="section-content__body__input">
@@ -94,26 +94,11 @@
           
           <div class="tab-contents__body">
             <div class="section-navigation">
-              <div class="section-navigation__stepper-container">
-                <button class="section-navigation__stepper-container__stepper active">1</button>
-              </div>
+              <div class="section-navigation__stepper-container"></div>
               <button class="section-navigation__add-section">+</button>
             </div>
 
-            <div class="section-content">
-              <div class="section-content__form active">
-                <div class="section-content__header">
-                  <h2 class="section-content__header-title">Untitled</h2>
-                  <button class="section-content__header__edit-title-button"><i class="fa fa-pencil"></i></button>
-                  <p>Share details to showcase your qualifications</p>
-                </div>
-              
-                <div class="section-content__body">
-                  <input type="text">
-                </div>
-              </div>
-              
-            </div>
+            <div class="section-content"></div>
             
             <div class="section-content__footer">
               <button class="section-content__footer__back">Back</button>
@@ -127,7 +112,7 @@
           </div>
 
           <div class="tab-contents__result">
-            <h2>Preview</h2>
+            <h2>Result</h2>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad aut neque quam inventore, voluptatum sapiente quia quod commodi magnam quisquam quas aperiam tempora nulla, ab eaque iusto! Blanditiis, assumenda omnis.</p>
           </div>
         </div>
