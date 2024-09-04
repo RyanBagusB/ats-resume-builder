@@ -7,7 +7,7 @@ class HeaderController {
   }
 
   main() {
-    const nextButton = document.querySelector('.tab-contents__header .section-content__footer__next');
+    const nextButton = document.querySelector('.tab-contents__header .section-button__next');
     const removePhoto = document.querySelector('#remove-photo');
 
     headerService.load();

@@ -1,3 +1,4 @@
+import bodyExperienceService from "./BodyExperienceService";
 import { resumeService } from "./resumeService";
 
 class BodyService {
@@ -17,7 +18,7 @@ class BodyService {
     return stepper;
   }
 
-  createSectionElement(titleText) {
+  createSectionHeaderElement(titleText) {
     const header = document.createElement('div');
     const title = document.createElement('h2');
     const editTitleButton = document.createElement('button');
@@ -36,18 +37,39 @@ class BodyService {
     return header;
   }
 
+  createSectionBodyElement() {
+    const body = document.createElement('div');
+    body.classList.add('section-content__body');
+
+    return body;
+  }
+
+  createSectionFooterElement() {
+    const footer = document.createElement('div');
+    const addExperienceButton = document.createElement('button');
+
+    addExperienceButton.classList.add('section-content__footer__add-experience-button');
+    addExperienceButton.innerHTML = '<i class="fa-solid fa-plus"></i> Add Experience';
+    footer.classList.add('section-content__footer');
+    footer.appendChild(addExperienceButton);
+
+    return footer;
+  }
+
   createSectionForm(title = 'Untitled') {
     const form = document.createElement('div');
     const stepperElement = this.createStepperElement();
-    const sectionElement = this.createSectionElement(title);
+    const header = this.createSectionHeaderElement(title);
+    const body = this.createSectionBodyElement();
+    const footer = this.createSectionFooterElement();
     
     form.classList.add('section-content__form');
-    form.appendChild(sectionElement);
+    form.append(header, body, footer);
 
     this.stepperContainer.appendChild(stepperElement);
     this.sectionContent.appendChild(form);
 
-    const bodyElement = { stepper: stepperElement, form };
+    const bodyElement = { stepper: stepperElement, form, body, footer };
     this.bodyElements.push(bodyElement);
 
     return bodyElement;
@@ -58,20 +80,22 @@ class BodyService {
     this.bodyElements.forEach((element) => {
       const form = element.form;
       const title = form.querySelector('h2').textContent;
+      const experiencesElement = form.querySelector('.section-content__body').children;
+      
+      const experiences = bodyExperienceService.save(experiencesElement);
 
-      this.resume.body.push({ title });
+      this.resume.body.push({ title, experiences });
     });
-    
+
     resumeService.saveCV(this.resume);
   }
 
   load() {
     const { body } = this.resume;
 
-
     if (body.length) {
-      body.forEach((value) => {
-        this.createSectionForm(value.title);
+      body.forEach(({ title }) => {
+        this.createSectionForm(title);
       });
     } else {
       this.createSectionForm();

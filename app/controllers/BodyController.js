@@ -1,3 +1,4 @@
+import bodyExperienceService from "../services/BodyExperienceService";
 import bodyService from "../services/BodyService";
 
 class BodyController {
@@ -6,8 +7,8 @@ class BodyController {
   }
 
   main() {
-    const backButton = document.querySelector('.tab-contents__body .section-content__footer__back');
-    const nextButton = document.querySelector('.tab-contents__body .section-content__footer__next');
+    const backButton = document.querySelector('.tab-contents__body .section-button__back');
+    const nextButton = document.querySelector('.tab-contents__body .section-button__next');
     const addBodySectionButton = document.querySelector('.tab-contents__body .section-navigation__add-section');
 
     const bodyElements = bodyService.load();
@@ -18,20 +19,23 @@ class BodyController {
     nextButton.addEventListener('click', this.nextButtonListener.bind(this));
   }
 
-  addFunctionalityToButton(stepper, title) {
+  addFunctionalityToButton(stepper, title, addExperienceButton) {
     const editTitleButton = title.nextElementSibling;
 
     stepper.addEventListener('click', this.stepperListener.bind(this));
-    title.addEventListener('blur', this.titleListener.bind(this));
+    title.addEventListener('blur', this.titleOnBlurListener.bind(this));
+    title.addEventListener('keydown', this.titleOnKeydownListener.bind(this));
     editTitleButton.addEventListener('click', this.editTitleButtonListener.bind(this));
+    addExperienceButton.addEventListener('click', this.addBodyExperienceButtonListener.bind(this));
   }
 
   loadElements(bodyElements) {
     bodyElements.forEach((element, index) => {
-      const { stepper, form } = element;
+      const { stepper, form, body, footer } = element;
       const title = form.querySelector('h2');
+      const addBodySectionButton = footer.querySelector('button');
 
-      this.addFunctionalityToButton(stepper, title);
+      this.addFunctionalityToButton(stepper, title, addBodySectionButton);
 
       if (index === 0) {
         stepper.classList.add('active');
@@ -43,10 +47,11 @@ class BodyController {
   }
 
   addBodySectionButtonListener() {
-    const { stepper, form } = bodyService.createSectionForm();
+    const { stepper, form, body, footer } = bodyService.createSectionForm();
     const title = form.querySelector('h2');
+    const addBodySectionButton = footer.querySelector('button');
 
-    this.addFunctionalityToButton(stepper, title);
+    this.addFunctionalityToButton(stepper, title, addBodySectionButton);
   }
 
   moveActiveElement(stepper, form) {
@@ -68,7 +73,14 @@ class BodyController {
     this.moveActiveElement(stepper, form);
   }
 
-  titleListener(event) {
+  titleOnKeydownListener(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      event.target.blur();
+    }
+  }
+
+  titleOnBlurListener(event) {
     const title = event.target;
     const editTitleButton = title.closest('.section-content__header').querySelector('.section-content__header__edit-title-button');
     const svg = editTitleButton.children[0];
@@ -93,6 +105,13 @@ class BodyController {
     const selection = window.getSelection();
     selection.removeAllRanges();
     selection.addRange(range);
+  }
+
+  addBodyExperienceButtonListener(event) {
+    const addBodyExperienceButton = event.target;
+    const experienceContainer = addBodyExperienceButton.parentElement.previousElementSibling;
+    const experience = bodyExperienceService.createExperienceElement();
+    experienceContainer.appendChild(experience);
   }
 
   backButtonListener() {

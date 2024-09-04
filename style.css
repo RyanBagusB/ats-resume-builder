@@ -277,7 +277,17 @@ main {
   background-color: var(--dark-gray);
 }
 
-.section-content__footer__next {
+.section-content__footer__add-experience-button {
+  width: 100%;
+  border: 2px dashed var(--light-green);
+  color: var(--light-green);
+  padding: .6rem;
+  border-radius: .4rem;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.section-button__next {
   background: var(--green-gradient);
   border: none;
   color: var(--white-color);
@@ -288,7 +298,7 @@ main {
   width: 130px;
 }
 
-.section-content__footer__back {
+.section-button__back {
   background-color: var(--white-color);
   border: 1px solid var(--light-green);
   color: var(--light-green);
@@ -345,30 +355,30 @@ main {
   display: block;
 }
 
-.section-content__footer {
+.section-button {
   display: flex;
   justify-content: space-between;
 }
 
-.section-content__footer__back {
+.section-button__back {
   order: 1;
   justify-content: flex-start;
 }
 
-.section-content__footer__next {
+.section-button__next {
   order: 2;
   justify-content: flex-end;
 }
 
-.section-content__footer button:only-child {
+.section-button button:only-child {
   justify-content: center;
 }
 
-.section-content__footer button.section-content__footer__back:only-child {
+.section-button button.section-button__back:only-child {
   order: 1;
 }
 
-.section-content__footer button.section-content__footer__next:only-child {
+.section-button button.section-button__next:only-child {
   order: 2;
   margin-left: auto;
 }
