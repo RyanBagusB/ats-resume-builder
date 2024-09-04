@@ -2,26 +2,36 @@ import bodyService from "../services/BodyService";
 
 class BodyController {
   constructor() {
-    this.addBodySectionButton = document.querySelector('.tab-contents__body .section-navigation__add-section');
     this.main();
   }
 
   main() {
     const backButton = document.querySelector('.tab-contents__body .section-content__footer__back');
     const nextButton = document.querySelector('.tab-contents__body .section-content__footer__next');
+    const addBodySectionButton = document.querySelector('.tab-contents__body .section-navigation__add-section');
 
     const bodyElements = bodyService.load();
     this.loadElements(bodyElements);
 
-    this.addBodySectionButton.addEventListener('click', this.addBodySectionButtonListener.bind(this));
+    addBodySectionButton.addEventListener('click', this.addBodySectionButtonListener.bind(this));
     backButton.addEventListener('click', this.backButtonListener.bind(this));
     nextButton.addEventListener('click', this.nextButtonListener.bind(this));
+  }
+
+  addFunctionalityToButton(stepper, title) {
+    const editTitleButton = title.nextElementSibling;
+
+    stepper.addEventListener('click', this.stepperListener.bind(this));
+    title.addEventListener('blur', this.titleListener.bind(this));
+    editTitleButton.addEventListener('click', this.editTitleButtonListener.bind(this));
   }
 
   loadElements(bodyElements) {
     bodyElements.forEach((element, index) => {
       const { stepper, form } = element;
-      stepper.addEventListener('click', this.stepperListener.bind(this));
+      const title = form.querySelector('h2');
+
+      this.addFunctionalityToButton(stepper, title);
 
       if (index === 0) {
         stepper.classList.add('active');
@@ -33,9 +43,10 @@ class BodyController {
   }
 
   addBodySectionButtonListener() {
-    const { stepper } = bodyService.createSectionForm();
+    const { stepper, form } = bodyService.createSectionForm();
+    const title = form.querySelector('h2');
 
-    stepper.addEventListener('click', this.stepperListener.bind(this));
+    this.addFunctionalityToButton(stepper, title);
   }
 
   moveActiveElement(stepper, form) {
@@ -55,6 +66,33 @@ class BodyController {
     const form = sectionContainer.children[index - 1];
 
     this.moveActiveElement(stepper, form);
+  }
+
+  titleListener(event) {
+    const title = event.target;
+    const editTitleButton = title.closest('.section-content__header').querySelector('.section-content__header__edit-title-button');
+    const svg = editTitleButton.children[0];
+    const pencil = svg.children[0];
+    
+    title.removeAttribute('contenteditable');
+    editTitleButton.style.display = 'block';
+    pencil.style.display = 'block';
+    svg.style.display = 'block';
+  }
+
+  editTitleButtonListener(event) {
+    const editTitleButton = event.target;
+    const title = editTitleButton.closest('.section-content__header').querySelector('h2');
+    title.setAttribute('contenteditable', 'true');
+
+    editTitleButton.style.display = 'none';
+
+    const range = document.createRange();
+    range.selectNodeContents(title);
+    range.collapse(false);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
   }
 
   backButtonListener() {
@@ -83,6 +121,7 @@ class BodyController {
       currentTab.checked = false;
       nextTab.checked = true;
 
+      bodyService.save();
       return;
     }
 
