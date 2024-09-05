@@ -50,6 +50,7 @@ class BodyExperienceService {
 
   createDescriptionForm() {
     const sectionContentBodyInput = document.createElement('div');
+    const descriptionContentBodyInput = document.createElement('div');
     const descriptionLable = document.createElement('label');
     const descriptionForm = document.createElement('input');
     const addDescriptionButton = document.createElement('button');
@@ -60,9 +61,10 @@ class BodyExperienceService {
     descriptionLable.innerText = 'Description';
     descriptionForm.placeholder = 'Enter experience description';
     addDescriptionButton.innerText = 'Add';
+    descriptionContentBodyInput.append(descriptionForm, addDescriptionButton);
     descriptionContainer.appendChild(description);
     
-    sectionContentBodyInput.append(descriptionLable, descriptionForm, addDescriptionButton, descriptionContainer);
+    sectionContentBodyInput.append(descriptionLable, descriptionContentBodyInput, descriptionContainer);
 
     return sectionContentBodyInput;
   }
@@ -121,7 +123,7 @@ class BodyExperienceService {
 
   createExperienceElement(title = 'Untitled', position = '', location = '', date = '', link = '') {
     const experience = document.createElement('div');
-    experience.classList.add('section-content__body');
+    experience.classList.add('section-content__body__form');
     const experienceTitle = document.createElement('h3');
     const experienceFormContainer = this.createExperienceFormElement(title, position, location, date, link);
 
@@ -137,9 +139,12 @@ class BodyExperienceService {
       position: experience.querySelector('div').children[1].querySelector('input').value,
       location: experience.querySelector('div').children[2].querySelector('input').value,
       date: experience.querySelector('div').children[3].querySelector('input').value,
-      link: experience.querySelector('div').children[4].querySelector('input').value,
+      description: Array.from(experience.querySelector('div').children[4].querySelector('ul').children)
+        .map(li => li.textContent),
+      link: experience.querySelector('div').children[5].querySelector('input').value,
     }));
   }
+  
 
   load(experiences, container) {
     experiences.forEach(({ title, position, location, date, link }) => {
