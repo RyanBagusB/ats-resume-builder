@@ -48,6 +48,22 @@ class BodyExperienceService {
     return sectionContentBodyInput;
   }
 
+  createDescriptionForm() {
+    const sectionContentBodyInput = document.createElement('div');
+    const descriptionLable = document.createElement('label');
+    const descriptionForm = document.createElement('input');
+    const addDescriptionButton = document.createElement('button');
+  
+    sectionContentBodyInput.classList.add('section-content__body__input');
+    descriptionLable.innerText = 'Description';
+    descriptionForm.placeholder = 'Enter experience description';
+    addDescriptionButton.innerText = 'Add';
+
+    sectionContentBodyInput.append(descriptionLable, descriptionForm, addDescriptionButton);
+
+    return sectionContentBodyInput;
+  }
+
   createDateForm(date) {
     const sectionContentBodyInput = document.createElement('div');
     const dateLable = document.createElement('label');
@@ -84,9 +100,10 @@ class BodyExperienceService {
     const positionForm = this.createPositionForm(position);
     const locationForm = this.createLocationForm(location);
     const dateForm = this.createDateForm(date);
+    const descriptionForm = this.createDescriptionForm();
     const linkForm = this.createLinkForm(link);
 
-    experienceFormContainer.append(titleForm, positionForm, locationForm, dateForm, linkForm);
+    experienceFormContainer.append(titleForm, positionForm, locationForm, dateForm, descriptionForm, linkForm);
 
     return experienceFormContainer;
   }
