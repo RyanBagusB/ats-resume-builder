@@ -19,7 +19,7 @@ class BodyController {
     nextButton.addEventListener('click', this.nextButtonListener.bind(this));
   }
 
-  addFunctionalityToButton(stepper, title, addExperienceButton, experienceName) {
+  addFunctionalityToButton(stepper, title, addExperienceButton) {
     const editTitleButton = title.nextElementSibling;
 
     stepper.addEventListener('click', this.stepperListener.bind(this));
@@ -34,13 +34,17 @@ class BodyController {
       const { stepper, form, body, footer } = element;
       const title = form.querySelector('h2');
       const addBodySectionButton = footer.querySelector('button');
-      const experienceName = body.children;
+      const experienceContainer = body.children;
       
-      Array.from(experienceName).forEach((element) => {
+      Array.from(experienceContainer).forEach((element) => {
         element.querySelector('input').addEventListener('input', this.experienceNameListener.bind(this));
+        const addDescription = element.querySelector('button');
+        const inputDescription = addDescription.previousElementSibling;
+        addDescription.addEventListener('click', this.addExperienceButtonListener.bind(this));
+        inputDescription.addEventListener('keydown', this.addExperienceButtonKeydownListener.bind(this));
       });
 
-      this.addFunctionalityToButton(stepper, title, addBodySectionButton, experienceName);
+      this.addFunctionalityToButton(stepper, title, addBodySectionButton);
 
       if (index === 0) {
         stepper.classList.add('active');
@@ -52,12 +56,11 @@ class BodyController {
   }
 
   addBodySectionButtonListener() {
-    const { stepper, form, body, footer } = bodyService.createSectionForm();
+    const { stepper, form, footer } = bodyService.createSectionForm();
     const title = form.querySelector('h2');
     const addBodySectionButton = footer.querySelector('button');
-    const experienceName = body.querySelector('input');
 
-    this.addFunctionalityToButton(stepper, title, addBodySectionButton, experienceName);
+    this.addFunctionalityToButton(stepper, title, addBodySectionButton);
   }
 
   moveActiveElement(stepper, form) {
@@ -119,6 +122,11 @@ class BodyController {
 
     const experience = bodyExperienceService.createExperienceElement();
     experience.querySelector('input').addEventListener('input', this.experienceNameListener.bind(this));
+    const addDescription = experience.querySelector('button');
+    const inputDescription = addDescription.previousElementSibling;
+    
+    addDescription.addEventListener('click', this.addExperienceButtonListener.bind(this));
+    inputDescription.addEventListener('keydown', this.addExperienceButtonKeydownListener.bind(this));
     experienceContainer.appendChild(experience);
   }
 
@@ -127,6 +135,35 @@ class BodyController {
     const experienceTitle = experienceName.parentElement.parentElement.previousElementSibling;
     experienceTitle.innerText = experienceName.value;
   }
+
+  addExperienceButtonListener(event) {
+    const addButton = event.target;
+    const input = addButton.previousElementSibling;
+    const experienceContainer = addButton.parentElement.nextElementSibling;
+
+    if (input.value.trim() === '') {
+      return;
+    }
+
+    experienceContainer.appendChild(bodyExperienceService.createDescriptionList(input.value));
+    input.value = '';
+  }
+
+  addExperienceButtonKeydownListener(event) {
+    if (event.key === 'Enter') {
+      const input = event.target;
+      const addButton = input.nextElementSibling;
+      const experienceContainer = addButton.parentElement.nextElementSibling;
+
+      if (input.value.trim() === '') {
+        return;
+      }
+
+      experienceContainer.appendChild(bodyExperienceService.createDescriptionList(input.value));
+      input.value = '';
+    }
+  }
+  
 
   backButtonListener() {
     const currentTab = document.querySelector('#body');
