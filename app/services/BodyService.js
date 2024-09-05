@@ -80,9 +80,8 @@ class BodyService {
     this.bodyElements.forEach((element) => {
       const form = element.form;
       const title = form.querySelector('h2').textContent;
-      const experiencesElement = form.querySelector('.section-content__body').children;
-      
-      const experiences = bodyExperienceService.save(experiencesElement);
+
+      const experiences = bodyExperienceService.save(element.body);
 
       this.resume.body.push({ title, experiences });
     });
@@ -94,8 +93,9 @@ class BodyService {
     const { body } = this.resume;
 
     if (body.length) {
-      body.forEach(({ title }) => {
-        this.createSectionForm(title);
+      body.forEach(({ title, experiences }) => {
+        const { body } = this.createSectionForm(title);
+        bodyExperienceService.load(experiences, body);
       });
     } else {
       this.createSectionForm();
