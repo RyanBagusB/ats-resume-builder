@@ -118,6 +118,7 @@ class BodyExperienceService {
     const descriptionForm = this.createDescriptionForm(descriptions);
     const linkForm = this.createLinkForm(link);
 
+    experienceFormContainer.classList.add('section-content__body__experience__form');
     experienceFormContainer.append(titleForm, positionForm, locationForm, dateForm, descriptionForm, linkForm);
 
     return experienceFormContainer;
@@ -125,10 +126,11 @@ class BodyExperienceService {
 
   createExperienceElement(title = 'Untitled', position = '', location = '', date = '', descriptions = [], link = '') {
     const experience = document.createElement('div');
-    experience.classList.add('section-content__body__form');
+    experience.classList.add('section-content__body__experience');
     const experienceTitle = document.createElement('h3');
     const experienceFormContainer = this.createExperienceFormElement(title, position, location, date, descriptions, link);
 
+    experienceTitle.classList.add('section-content__body__experience__header');
     experienceTitle.innerText = title;
     experience.append(experienceTitle, experienceFormContainer);
 
