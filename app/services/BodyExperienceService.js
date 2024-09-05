@@ -48,33 +48,35 @@ class BodyExperienceService {
     return sectionContentBodyInput;
   }
 
-  createDescriptionForm() {
+  createDescriptionForm(descriptions) {
     const sectionContentBodyInput = document.createElement('div');
     const descriptionContentBodyInput = document.createElement('div');
     const descriptionLable = document.createElement('label');
     const descriptionForm = document.createElement('input');
     const addDescriptionButton = document.createElement('button');
     const descriptionContainer = document.createElement('ul');
-    const description = this.createDescriptionList();
   
     sectionContentBodyInput.classList.add('section-content__body__input');
     descriptionLable.innerText = 'Description';
     descriptionForm.placeholder = 'Enter experience description';
     addDescriptionButton.innerText = 'Add';
     descriptionContentBodyInput.append(descriptionForm, addDescriptionButton);
-    descriptionContainer.appendChild(description);
+
+    descriptions.forEach((description) => {
+      descriptionContainer.appendChild(this.createDescriptionList(description));
+    });
     
     sectionContentBodyInput.append(descriptionLable, descriptionContentBodyInput, descriptionContainer);
 
     return sectionContentBodyInput;
   }
 
-  createDescriptionList() {
-    const description = document.createElement('li');
+  createDescriptionList(description) {
+    const descriptionElement = document.createElement('li');
 
-    description.innerText = 'Untitled';
+    descriptionElement.innerText = description;
 
-    return description;
+    return descriptionElement;
   }
 
   createDateForm(date) {
@@ -107,13 +109,13 @@ class BodyExperienceService {
     return sectionContentBodyInput;
   }
 
-  createExperienceFormElement(title, position, location, date, link) {
+  createExperienceFormElement(title, position, location, date, descriptions, link) {
     const experienceFormContainer = document.createElement('div');
     const titleForm = this.createTitleForm(title);
     const positionForm = this.createPositionForm(position);
     const locationForm = this.createLocationForm(location);
     const dateForm = this.createDateForm(date);
-    const descriptionForm = this.createDescriptionForm();
+    const descriptionForm = this.createDescriptionForm(descriptions);
     const linkForm = this.createLinkForm(link);
 
     experienceFormContainer.append(titleForm, positionForm, locationForm, dateForm, descriptionForm, linkForm);
@@ -121,11 +123,11 @@ class BodyExperienceService {
     return experienceFormContainer;
   }
 
-  createExperienceElement(title = 'Untitled', position = '', location = '', date = '', link = '') {
+  createExperienceElement(title = 'Untitled', position = '', location = '', date = '', descriptions = [], link = '') {
     const experience = document.createElement('div');
     experience.classList.add('section-content__body__form');
     const experienceTitle = document.createElement('h3');
-    const experienceFormContainer = this.createExperienceFormElement(title, position, location, date, link);
+    const experienceFormContainer = this.createExperienceFormElement(title, position, location, date, descriptions, link);
 
     experienceTitle.innerText = title;
     experience.append(experienceTitle, experienceFormContainer);
@@ -139,7 +141,7 @@ class BodyExperienceService {
       position: experience.querySelector('div').children[1].querySelector('input').value,
       location: experience.querySelector('div').children[2].querySelector('input').value,
       date: experience.querySelector('div').children[3].querySelector('input').value,
-      description: Array.from(experience.querySelector('div').children[4].querySelector('ul').children)
+      descriptions: Array.from(experience.querySelector('div').children[4].querySelector('ul').children)
         .map(li => li.textContent),
       link: experience.querySelector('div').children[5].querySelector('input').value,
     }));
@@ -147,8 +149,8 @@ class BodyExperienceService {
   
 
   load(experiences, container) {
-    experiences.forEach(({ title, position, location, date, link }) => {
-      container.appendChild(this.createExperienceElement(title, position, location, date, link));
+    experiences.forEach(({ title, position, location, date, descriptions, link }) => {
+      container.appendChild(this.createExperienceElement(title, position, location, date, descriptions, link));
     });
   }
 }
