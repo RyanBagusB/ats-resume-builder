@@ -19,7 +19,7 @@ class BodyController {
     nextButton.addEventListener('click', this.nextButtonListener.bind(this));
   }
 
-  addFunctionalityToButton(stepper, title, addExperienceButton) {
+  addFunctionalityToButton(stepper, title, addExperienceButton, experienceName) {
     const editTitleButton = title.nextElementSibling;
 
     stepper.addEventListener('click', this.stepperListener.bind(this));
@@ -34,8 +34,13 @@ class BodyController {
       const { stepper, form, body, footer } = element;
       const title = form.querySelector('h2');
       const addBodySectionButton = footer.querySelector('button');
+      const experienceName = body.children;
+      
+      Array.from(experienceName).forEach((element) => {
+        element.querySelector('input').addEventListener('input', this.experienceNameListener.bind(this));
+      });
 
-      this.addFunctionalityToButton(stepper, title, addBodySectionButton);
+      this.addFunctionalityToButton(stepper, title, addBodySectionButton, experienceName);
 
       if (index === 0) {
         stepper.classList.add('active');
@@ -50,8 +55,9 @@ class BodyController {
     const { stepper, form, body, footer } = bodyService.createSectionForm();
     const title = form.querySelector('h2');
     const addBodySectionButton = footer.querySelector('button');
+    const experienceName = body.querySelector('input');
 
-    this.addFunctionalityToButton(stepper, title, addBodySectionButton);
+    this.addFunctionalityToButton(stepper, title, addBodySectionButton, experienceName);
   }
 
   moveActiveElement(stepper, form) {
@@ -110,8 +116,16 @@ class BodyController {
   addBodyExperienceButtonListener(event) {
     const addBodyExperienceButton = event.target;
     const experienceContainer = addBodyExperienceButton.parentElement.previousElementSibling;
+
     const experience = bodyExperienceService.createExperienceElement();
+    experience.querySelector('input').addEventListener('input', this.experienceNameListener.bind(this));
     experienceContainer.appendChild(experience);
+  }
+
+  experienceNameListener(event) {
+    const experienceName = event.target;
+    const experienceTitle = experienceName.parentElement.parentElement.previousElementSibling;
+    experienceTitle.innerText = experienceName.value;
   }
 
   backButtonListener() {
