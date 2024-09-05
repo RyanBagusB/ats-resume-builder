@@ -53,15 +53,26 @@ class BodyExperienceService {
     const descriptionLable = document.createElement('label');
     const descriptionForm = document.createElement('input');
     const addDescriptionButton = document.createElement('button');
+    const descriptionContainer = document.createElement('ul');
+    const description = this.createDescriptionList();
   
     sectionContentBodyInput.classList.add('section-content__body__input');
     descriptionLable.innerText = 'Description';
     descriptionForm.placeholder = 'Enter experience description';
     addDescriptionButton.innerText = 'Add';
-
-    sectionContentBodyInput.append(descriptionLable, descriptionForm, addDescriptionButton);
+    descriptionContainer.appendChild(description);
+    
+    sectionContentBodyInput.append(descriptionLable, descriptionForm, addDescriptionButton, descriptionContainer);
 
     return sectionContentBodyInput;
+  }
+
+  createDescriptionList() {
+    const description = document.createElement('li');
+
+    description.innerText = 'Untitled';
+
+    return description;
   }
 
   createDateForm(date) {
