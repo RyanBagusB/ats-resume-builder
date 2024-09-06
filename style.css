@@ -401,11 +401,12 @@ main {
   flex-direction: column;
   height: 0;
   overflow: hidden;
-  transition: 0.5s ease;
+  transition: 0.5s;
 }
 
 .section-content__body__experience__form.active {
-  height: 100%;
+  height: auto;
+  height: calc-size(auto);
   margin-top: 1rem;
 }
 
