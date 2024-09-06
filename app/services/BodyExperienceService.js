@@ -60,7 +60,9 @@ class BodyExperienceService {
     descriptionLable.innerText = 'Description';
     descriptionForm.placeholder = 'Enter experience description';
     addDescriptionButton.innerText = 'Add';
+    descriptionContentBodyInput.classList.add('section-content__body__input__description');
     descriptionContentBodyInput.append(descriptionForm, addDescriptionButton);
+    descriptionContainer.classList.add('section-content__body__input__description__container');
 
     descriptions.forEach((description) => {
       descriptionContainer.appendChild(this.createDescriptionList(description));
