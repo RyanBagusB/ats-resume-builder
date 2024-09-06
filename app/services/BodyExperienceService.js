@@ -155,13 +155,13 @@ class BodyExperienceService {
  
   save(experiencesElement) {
     return Array.from(experiencesElement.children).map(experience => ({
-      title: experience.querySelector('div').children[0].querySelector('input').value,
-      position: experience.querySelector('div').children[1].querySelector('input').value,
-      location: experience.querySelector('div').children[2].querySelector('input').value,
-      date: experience.querySelector('div').children[3].querySelector('input').value,
-      descriptions: Array.from(experience.querySelector('div').children[4].querySelector('ul').children)
+      title: experience.children[1].children[0].querySelector('input').value,
+      position: experience.children[1].children[1].querySelector('input').value,
+      location: experience.children[1].children[2].querySelector('input').value,
+      date: experience.children[1].children[3].querySelector('input').value,
+      descriptions: Array.from(experience.children[1].children[4].querySelector('ul').children)
         .map(li => li.textContent),
-      link: experience.querySelector('div').children[5].querySelector('input').value,
+      link: experience.children[1].children[5].querySelector('input').value,
     }));
   }
   
