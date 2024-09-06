@@ -122,7 +122,7 @@ class BodyController {
 
     const experience = bodyExperienceService.createExperienceElement();
     experience.querySelector('input').addEventListener('input', this.experienceNameListener.bind(this));
-    const addDescription = experience.querySelector('button');
+    const addDescription = experience.querySelector('.section-content__body__experience__form').querySelector('button');
     const inputDescription = addDescription.previousElementSibling;
     
     addDescription.addEventListener('click', this.addExperienceButtonListener.bind(this));
