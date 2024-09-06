@@ -126,15 +126,29 @@ class BodyExperienceService {
     return experienceFormContainer;
   }
 
+  createExperienceHeaderElement(title) {
+    const experienceHeader = document.createElement('div');
+    const experienceTitle = document.createElement('h3');
+    const experienceButton = document.createElement('div');
+    const accordionButton = document.createElement('button');
+
+    accordionButton.innerText = 'tes'
+    experienceButton.classList.add('section-content__body__experience__header__button');
+    experienceButton.append(accordionButton);
+    experienceHeader.classList.add('section-content__body__experience__header');
+    experienceHeader.append(experienceTitle, experienceButton);
+    experienceTitle.innerText = title;
+
+    return experienceHeader;
+  }
+
   createExperienceElement(title = 'Untitled', position = '', location = '', date = '', descriptions = [], link = '') {
     const experience = document.createElement('div');
-    experience.classList.add('section-content__body__experience');
-    const experienceTitle = document.createElement('h3');
+    const experienceHeader= this.createExperienceHeaderElement(title);
     const experienceFormContainer = this.createExperienceFormElement(title, position, location, date, descriptions, link);
 
-    experienceTitle.classList.add('section-content__body__experience__header');
-    experienceTitle.innerText = title;
-    experience.append(experienceTitle, experienceFormContainer);
+    experience.classList.add('section-content__body__experience');
+    experience.append(experienceHeader, experienceFormContainer);
 
     return experience;
   }
