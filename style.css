@@ -401,6 +401,7 @@ main {
   flex-direction: column;
   height: 0;
   overflow: hidden;
+  gap: .9rem;
   transition: 0.5s;
 }
 
