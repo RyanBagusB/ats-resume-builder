@@ -38,10 +38,12 @@ class BodyController {
       
       Array.from(experienceContainer).forEach((element) => {
         element.querySelector('input').addEventListener('input', this.experienceNameListener.bind(this));
+        const accordion = element.querySelector('.section-content__body__experience__header__button__accordion');
         const addDescription = element.querySelector('.section-content__body__experience__form').querySelector('button');
         const inputDescription = addDescription.previousElementSibling;
         addDescription.addEventListener('click', this.addExperienceButtonListener.bind(this));
         inputDescription.addEventListener('keydown', this.addExperienceButtonKeydownListener.bind(this));
+        accordion.addEventListener('click', this.accordionListener.bind(this));
       });
 
       this.addFunctionalityToButton(stepper, title, addBodySectionButton);
@@ -116,6 +118,16 @@ class BodyController {
     selection.addRange(range);
   }
 
+  accordionListener(event) {
+    const accordion = event.target;
+    const form = accordion.parentElement.parentElement.nextElementSibling;
+    const experience = form.parentElement;
+
+    accordion.classList.toggle('active');
+    experience.classList.toggle('active');
+    form.classList.toggle('active');
+  }
+
   addBodyExperienceButtonListener(event) {
     const addBodyExperienceButton = event.target;
     const experienceContainer = addBodyExperienceButton.parentElement.previousElementSibling;
@@ -124,9 +136,11 @@ class BodyController {
     experience.querySelector('input').addEventListener('input', this.experienceNameListener.bind(this));
     const addDescription = experience.querySelector('.section-content__body__experience__form').querySelector('button');
     const inputDescription = addDescription.previousElementSibling;
+    const accordion = experience.querySelector('.section-content__body__experience__header__button__accordion');
     
     addDescription.addEventListener('click', this.addExperienceButtonListener.bind(this));
     inputDescription.addEventListener('keydown', this.addExperienceButtonKeydownListener.bind(this));
+    accordion.addEventListener('click', this.accordionListener.bind(this));
     experienceContainer.appendChild(experience);
   }
 
@@ -164,7 +178,6 @@ class BodyController {
     }
   }
   
-
   backButtonListener() {
     const currentTab = document.querySelector('#body');
     const previousTab = currentTab.previousElementSibling.previousElementSibling;
