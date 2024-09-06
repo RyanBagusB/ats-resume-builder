@@ -393,6 +393,7 @@ main {
   padding: .6rem;
   background: var(--green-gradient);
   color: var(--white-color);
+  cursor: pointer;
 }
 
 .section-content__body__input__description__container li {
