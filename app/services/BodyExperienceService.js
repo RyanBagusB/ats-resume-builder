@@ -132,7 +132,7 @@ class BodyExperienceService {
     const experienceButton = document.createElement('div');
     const accordionButton = document.createElement('button');
 
-    accordionButton.innerText = 'tes'
+    accordionButton.classList.add('section-content__body__experience__header__button__accordion');
     experienceButton.classList.add('section-content__body__experience__header__button');
     experienceButton.append(accordionButton);
     experienceHeader.classList.add('section-content__body__experience__header');
