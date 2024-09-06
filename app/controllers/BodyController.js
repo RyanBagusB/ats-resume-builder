@@ -38,7 +38,7 @@ class BodyController {
       
       Array.from(experienceContainer).forEach((element) => {
         element.querySelector('input').addEventListener('input', this.experienceNameListener.bind(this));
-        const addDescription = element.querySelector('button');
+        const addDescription = element.querySelector('.section-content__body__experience__form').querySelector('button');
         const inputDescription = addDescription.previousElementSibling;
         addDescription.addEventListener('click', this.addExperienceButtonListener.bind(this));
         inputDescription.addEventListener('keydown', this.addExperienceButtonKeydownListener.bind(this));
