@@ -370,16 +370,34 @@ main {
   padding: .5rem;
 }
 
-/* .section-content__body__experience__header {
-  border-bottom: 1px solid var(--dark-gray);
-  padding: .5rem;
-  display: flex;
-} */
-
 .section-content__body__experience__form {
   display: flex;
   flex-direction: column;
   gap: .8rem;
+}
+
+.section-content__body__input__description {
+  display: flex;
+  gap: .4rem;
+  flex-direction: column;
+}
+
+.section-content__body__input__description input {
+  width: 100%;
+}
+
+.section-content__body__input__description button {
+  width: 100%;
+  border-radius: .5rem;
+  border: none;
+  padding: .6rem;
+  background: var(--green-gradient);
+  color: var(--white-color);
+}
+
+.section-content__body__input__description__container li {
+  margin-left: 1.5rem;
+  word-wrap: break-word;
 }
 
 .section-button {
