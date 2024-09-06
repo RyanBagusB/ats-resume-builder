@@ -146,7 +146,7 @@ class BodyController {
 
   experienceNameListener(event) {
     const experienceName = event.target;
-    const experienceTitle = experienceName.parentElement.parentElement.previousElementSibling;
+    const experienceTitle = experienceName.parentElement.parentElement.previousElementSibling.querySelector('h3');
     experienceTitle.innerText = experienceName.value;
   }
 
