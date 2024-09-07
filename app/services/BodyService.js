@@ -35,6 +35,7 @@ class BodyService {
     title.classList.add('section-content__header-title');
     editTitleButton.classList.add('section-content__header__edit-title-button');
     title.innerText = titleText;
+    deleteSectionButton.classList.add('section-content__header__remove-section');
     deleteSectionButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
     editTitleButton.innerHTML = '<i class="fa fa-pencil"></i>';
     description.innerText = 'Share details to showcase your qualifications';
