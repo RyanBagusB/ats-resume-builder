@@ -313,7 +313,7 @@ main {
   width: 120px;
 }
 
-.section-content__header {
+/* .section-content__header {
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: auto 1fr;
@@ -323,7 +323,7 @@ main {
   grid-column: 1 / 2;
   align-self: center;
   padding-right: .4rem;
-}
+} */
 
 .section-content__header-title[contenteditable="true"] {
   outline: none;
@@ -344,11 +344,11 @@ main {
   font-size: 1.3rem;
 }
 
-.section-content__header p {
+/* .section-content__header p {
   grid-column: 1 / -1;
   font-size: .9rem;
   margin: 0;
-}
+} */
 
 .tab-contents__body .section-content__form {
   display: none;
