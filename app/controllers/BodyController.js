@@ -19,7 +19,7 @@ class BodyController {
     nextButton.addEventListener('click', this.nextButtonListener.bind(this));
   }
 
-  addFunctionalityToButton(stepper, title, addExperienceButton) {
+  addFunctionalityToButton(stepper, title, addExperienceButton, removeSection) {
     const editTitleButton = title.nextElementSibling;
 
     stepper.addEventListener('click', this.stepperListener.bind(this));
@@ -27,6 +27,7 @@ class BodyController {
     title.addEventListener('keydown', this.titleOnKeydownListener.bind(this));
     editTitleButton.addEventListener('click', this.editTitleButtonListener.bind(this));
     addExperienceButton.addEventListener('click', this.addBodyExperienceButtonListener.bind(this));
+    removeSection.addEventListener('click', this.removeSectionButtonListener.bind(this));
   }
 
   loadElements(bodyElements) {
@@ -35,6 +36,7 @@ class BodyController {
       const title = form.querySelector('h2');
       const addBodySectionButton = footer.querySelector('button');
       const experienceContainer = body.children;
+      const removeSection = form.querySelector('.section-content__header').querySelector('.section-content__header__remove-section');
       
       Array.from(experienceContainer).forEach((element) => {
         element.querySelector('input').addEventListener('input', this.experienceNameListener.bind(this));
@@ -46,7 +48,7 @@ class BodyController {
         accordion.addEventListener('click', this.accordionListener.bind(this));
       });
 
-      this.addFunctionalityToButton(stepper, title, addBodySectionButton);
+      this.addFunctionalityToButton(stepper, title, addBodySectionButton, removeSection);
 
       if (index === 0) {
         stepper.classList.add('active');
@@ -61,8 +63,13 @@ class BodyController {
     const { stepper, form, footer } = bodyService.createSectionForm();
     const title = form.querySelector('h2');
     const addBodySectionButton = footer.querySelector('button');
+    const removeSection = form.querySelector('.section-content__header').querySelector('.section-content__header__remove-section');
 
-    this.addFunctionalityToButton(stepper, title, addBodySectionButton);
+    this.addFunctionalityToButton(stepper, title, addBodySectionButton, removeSection);
+  }
+
+  removeSectionButtonListener() {
+
   }
 
   moveActiveElement(stepper, form) {
