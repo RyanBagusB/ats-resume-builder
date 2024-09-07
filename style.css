@@ -372,6 +372,7 @@ main {
 .section-content__body__experience__header {
   display: flex;
   justify-content: space-between;
+  min-height: 25px;
 }
 
 .section-content__body__experience__header__button {
