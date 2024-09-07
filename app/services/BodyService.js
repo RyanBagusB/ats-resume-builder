@@ -20,19 +20,26 @@ class BodyService {
 
   createSectionHeaderElement(titleText) {
     const header = document.createElement('div');
+    const titleContainer =document.createElement('div');
+    const titleConfiguration  = document.createElement('div');
     const title = document.createElement('h2');
     const editTitleButton = document.createElement('button');
     const description = document.createElement('p');
+    const deleteSectionButton = document.createElement('button');
 
+    titleConfiguration.append(title, editTitleButton);
+    titleConfiguration.classList.add('section-content__header__configuration');
+    titleContainer.classList.add('section-content__header__configuration__container');
+    titleContainer.append(titleConfiguration, description);
     header.classList.add('section-content__header');
     title.classList.add('section-content__header-title');
     editTitleButton.classList.add('section-content__header__edit-title-button');
-
     title.innerText = titleText;
+    deleteSectionButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
     editTitleButton.innerHTML = '<i class="fa fa-pencil"></i>';
     description.innerText = 'Share details to showcase your qualifications';
 
-    header.append(title, editTitleButton, description);
+    header.append(titleContainer, deleteSectionButton);
 
     return header;
   }
