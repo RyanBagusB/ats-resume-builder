@@ -268,7 +268,7 @@ main {
   display: none;
   right: -24px;
   padding: .7rem 1rem;
-  color: rgb(227, 84, 84);
+  color: rgb(240, 113, 113);
   cursor: pointer;
   background-color: transparent;
   border: none;
@@ -313,17 +313,35 @@ main {
   width: 120px;
 }
 
-/* .section-content__header {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: auto 1fr;
+.section-content__header:not(.tab-contents__header .section-content__header) {
+  display: flex;
+  justify-content: space-between;
 }
 
-.section-content__header-title {
-  grid-column: 1 / 2;
-  align-self: center;
-  padding-right: .4rem;
-} */
+.section-content__header > button {
+  background-color: transparent;
+  border: none;
+  color: rgb(240, 113, 113);
+  font-size: 1.3rem;
+  height: 100%;
+  padding: .5rem .7rem;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color .5s;
+}
+
+.section-content__header > button:hover {
+  background-color: var(--dark-gray);
+}
+
+.section-content__header__configuration {
+  align-items: center;
+  display: flex;
+}
+
+.section-content__header__configuration__container p {
+  font-size: .8rem;
+}
 
 .section-content__header-title[contenteditable="true"] {
   outline: none;
@@ -339,16 +357,9 @@ main {
   border: none;
   cursor: pointer;
   color: var(--dark-color);
-  grid-column: 2 / 3;
   justify-self: start;
   font-size: 1.3rem;
 }
-
-/* .section-content__header p {
-  grid-column: 1 / -1;
-  font-size: .9rem;
-  margin: 0;
-} */
 
 .tab-contents__body .section-content__form {
   display: none;
