@@ -25,8 +25,8 @@ class BodyController {
     stepper.addEventListener('click', this.stepperListener.bind(this));
     title.addEventListener('blur', this.titleOnBlurListener.bind(this));
     title.addEventListener('keydown', this.titleOnKeydownListener.bind(this));
-    // editTitleButton.addEventListener('click', this.editTitleButtonListener.bind(this));
-    // addExperienceButton.addEventListener('click', this.addBodyExperienceButtonListener.bind(this));
+    editTitleButton.addEventListener('click', this.editTitleButtonListener.bind(this));
+    addExperienceButton.addEventListener('click', this.addBodyExperienceButtonListener.bind(this));
   }
 
   loadElements(bodyElements) {
