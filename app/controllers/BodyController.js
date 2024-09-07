@@ -68,8 +68,11 @@ class BodyController {
     this.addFunctionalityToButton(stepper, title, addBodySectionButton, removeSection);
   }
 
-  removeSectionButtonListener() {
-
+  removeSectionButtonListener(event) {
+    const removeButton = event.target;
+    const section = removeButton.closest('.section-content__form');
+    bodyService.delete(section);
+    section.remove();
   }
 
   moveActiveElement(stepper, form) {
