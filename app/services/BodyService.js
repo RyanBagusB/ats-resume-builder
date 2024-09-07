@@ -91,11 +91,19 @@ class BodyService {
 
       const experiences = bodyExperienceService.save(element.body);
 
+      console.log(element);
       this.resume.body.push({ title, experiences });
     });
 
-    resumeService.saveCV(this.resume);
+    console.log(this.resume)
+    // resumeService.saveCV(this.resume);
   }
+
+  delete(sectionElement) {
+    const index = this.bodyElements.findIndex((section) => section.form === sectionElement);
+    this.bodyElements.splice(index, 1);
+  }
+  
 
   load() {
     const { body } = this.resume;
